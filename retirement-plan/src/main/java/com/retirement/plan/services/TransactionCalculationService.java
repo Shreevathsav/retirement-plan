@@ -5,16 +5,16 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.retirement.plan.dto.base.TransactionBaseDTO;
 import com.retirement.plan.dto.request.TransactionParserRequest;
-import com.retirement.plan.dto.response.TransactionParserResponse;
 
 @Service
 public class TransactionCalculationService {
 
-    public List<TransactionParserResponse> calculate(List<TransactionParserRequest> requests) {
-        List<TransactionParserResponse> responseList = new ArrayList<>();
+    public List<TransactionBaseDTO> calculate(List<TransactionParserRequest> requests) {
+        List<TransactionBaseDTO> responseList = new ArrayList<>();
         for (TransactionParserRequest request : requests) {
-            TransactionParserResponse response = new TransactionParserResponse();
+            TransactionBaseDTO response = new TransactionBaseDTO();
             response.setAmount(request.getAmount());
             response.setDate(request.getDate());
 

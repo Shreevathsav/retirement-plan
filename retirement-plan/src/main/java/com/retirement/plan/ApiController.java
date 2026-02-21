@@ -3,9 +3,12 @@ package com.retirement.plan;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.retirement.plan.dto.base.TransactionBaseDTO;
 import com.retirement.plan.dto.request.TransactionParserRequest;
-import com.retirement.plan.dto.response.TransactionParserResponse;
+import com.retirement.plan.dto.request.ValidatorRequest;
+import com.retirement.plan.dto.response.ValidatorResponse;
 import com.retirement.plan.services.TransactionCalculationService;
+import com.retirement.plan.services.ValidateService;
 
 import java.util.List;
 
@@ -22,10 +25,20 @@ public class ApiController {
     @Autowired
     TransactionCalculationService calculationService;
 
+    @Autowired
+    ValidateService validateService;
+
     @PostMapping("/transactions:parse")
-    public ResponseEntity<List<TransactionParserResponse>> parseTransaction(
+    public ResponseEntity<List<TransactionBaseDTO>> parseTransaction(
             @RequestBody List<TransactionParserRequest> requests) {
-        List<TransactionParserResponse> responses = calculationService.calculate(requests);
-        return new ResponseEntity<>(responses, HttpStatus.OK);
+
+        return new ResponseEntity<>(calculationService.calculate(requests), HttpStatus.OK);
+    }
+
+    @PostMapping("/transactions:validator")
+    public ResponseEntity<ValidatorResponse> validate(
+            @RequestBody ValidatorRequest request) {
+
+        return new ResponseEntity<>(validateService.validateTransaction(request), HttpStatus.OK);
     }
 }

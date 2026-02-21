@@ -1,4 +1,4 @@
-package com.retirement.plan.dto.response;
+package com.retirement.plan.dto.base;
 
 import java.time.LocalDateTime;
 
@@ -8,10 +8,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
-public class TransactionParserResponse {
-
+public class TransactionBaseDTO {
     @JsonProperty("date")
-    @JsonFormat(pattern = "YYYY-MM-DD HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime date;
 
     @JsonProperty("amount")
