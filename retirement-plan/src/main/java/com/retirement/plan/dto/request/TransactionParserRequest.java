@@ -11,7 +11,7 @@ import lombok.Data;
 public class TransactionParserRequest {
 
     @JsonProperty("date")
-    @JsonFormat(pattern = "YYYY-MM-DD HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime date;
 
     @JsonProperty("amount")

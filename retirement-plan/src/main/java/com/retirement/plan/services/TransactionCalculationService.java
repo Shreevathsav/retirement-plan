@@ -3,9 +3,12 @@ package com.retirement.plan.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.retirement.plan.dto.request.TransactionParserRequest;
 import com.retirement.plan.dto.response.TransactionParserResponse;
 
+@Service
 public class TransactionCalculationService {
 
     public List<TransactionParserResponse> calculate(List<TransactionParserRequest> requests) {
@@ -24,7 +27,7 @@ public class TransactionCalculationService {
     }
 
     public double roundOffToHundred(double amount) {
-        return ((amount + 99) / 100) * 100;
+        return Math.ceil(amount / 100.0) * 100;
     }
 
     public double diference(double ceiling, double amount) {
